@@ -1,0 +1,35 @@
+import {getUserProfile} from "../components/api/api";
+
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+
+let initialState = {
+    profile: []
+
+}
+
+const profileReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SET_USER_PROFILE: {
+            return {...state, profile: action.profile}
+        }
+        default:
+            return state;
+    }
+
+}
+
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
+
+//thunk
+export const getProfile = (userId) => async (dispatch) => {
+    let data = await getUserProfile.getProfileById(userId)
+    dispatch(setUserProfile(data));
+}
+
+export const changeStatus = (userId, value) => async (dispatch) => {
+    let data = await getUserProfile.changeStatus(userId, value);
+    dispatch(setUserProfile(data))
+}
+
+export default profileReducer;
