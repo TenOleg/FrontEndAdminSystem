@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {findUserByUsername, getUsers, setCurrentPage} from "../../redux/usersPageReducer";
+import {getUsers, setCurrentPage} from "../../redux/usersPageReducer";
 import React from "react";
 import Users from "./Users";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -15,15 +15,15 @@ import {
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-            this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUsers(this.props.keyword, this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUsers(this.props.keyword, pageNumber, this.props.pageSize);
     }
 
     onSearchClick = (keyword) => {
-        this.props.findUserByUsername(keyword, this.props.currentPage, this.props.pageSize)
+            this.props.getUsers(keyword || '', this.props.currentPage, this.props.pageSize)
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -58,7 +58,6 @@ export default compose(
     withAuthRedirect,
     connect(mapStateToProps, {
         setCurrentPage,
-        getUsers,
-        findUserByUsername
+        getUsers
     })
 )(UsersContainer);

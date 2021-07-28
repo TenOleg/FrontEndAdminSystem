@@ -45,24 +45,15 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 export const setKeyword = (keyword) => ({type:SET_KEYWORD, keyword})
 
 //thunk
-export const getUsers = (currentPage, pageSize) =>
+export const getUsers = (keyword, currentPage, pageSize) =>
     async (dispatch) => {
         dispatch(toggleIsFetching(true));
         dispatch(setCurrentPage(currentPage));
-        let data = await usersAPI.getUsers(currentPage, pageSize)
+        let data = await usersAPI.getUsers(keyword, currentPage, pageSize)
         dispatch(toggleIsFetching(false));
+        dispatch(setKeyword(keyword));
         dispatch(setUsers(data.data));
         dispatch(setUsersTotalCount(data.totalCount));
     }
-
-export const findUserByUsername = (keyword = initialState.keyword, currentPage, pageSize) => async (dispatch) => {
-    dispatch(toggleIsFetching(true));
-    dispatch(setCurrentPage(currentPage));
-    let data = await usersAPI.getUserByUsername(keyword, currentPage, pageSize)
-    dispatch(toggleIsFetching(false))
-    dispatch(setKeyword(keyword))
-    dispatch(setUsers(data.data))
-    dispatch(setUsersTotalCount(data.totalCount))
-}
 
 export default usersPageReducer;

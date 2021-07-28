@@ -7,8 +7,9 @@ import {SearchReduxForm} from "../../common/SearchForm/SearchForm";
 const UserInfo = (props) => {
 
     const onSubmit = (formData) => {
-        props.onSearchClick(formData.username, )
+        props.onSearchClick(formData.keyword)
     }
+
     return <div>
         {props.isFetching ? <Preloader/> : null}
         <SearchReduxForm onSubmit={onSubmit}/>

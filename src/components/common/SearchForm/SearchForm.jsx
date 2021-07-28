@@ -5,11 +5,11 @@ import {reduxForm} from "redux-form";
 const SearchForm = (props) => {
     return <div>
         <form onSubmit={props.handleSubmit}>
-            {CreatField('Search...', 'username', 'input')}
+            {CreatField('Search...', 'keyword', 'input')}
             <button>search</button>
         </form>
     </div>
 }
 
-export const SearchReduxForm = reduxForm({form: 'findUserByUsername'})(SearchForm)
+export const SearchReduxForm = reduxForm({form: 'getUsers'})(SearchForm)
 

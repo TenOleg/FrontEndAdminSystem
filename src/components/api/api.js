@@ -13,14 +13,10 @@ axios.interceptors.request.use(config => {
 });
 
 export const usersAPI = {
-    getUsers(currentPage, pageSize) {
+    getUsers(keyword, currentPage, pageSize) {
         return (
-            axios.get(BASE_URL + `users?pageNo=${currentPage}&pageSize=${pageSize}`).then(res => res.data)
+            axios.get(BASE_URL + `users?keyword=${keyword}&pageNo=${currentPage}&pageSize=${pageSize}`).then(res => res.data)
         )
-    }
-    ,
-    getUserByUsername(keyword, currentPage, pageSize) {
-        return axios.get(BASE_URL + `users?keyword=${keyword}&pageNo=${currentPage}&pageSize=${pageSize}`).then(res => res.data)
     }
 }
 

@@ -2,7 +2,6 @@ import './App.css';
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import {Route, withRouter} from "react-router-dom";
-// import UsersContainer from "./components/Users/UsersContainer";
 import PostsContainer from "./components/Posts/PostsContainer";
 import HomeContainer from "./components/Main/HomeContainer";
 import ProfileContainer from "./components/Users/Profile/ProfileContainer";
