@@ -12,15 +12,22 @@ axios.interceptors.request.use(config => {
     return config;
 });
 
+export const authAPI = {
+    auth(username, password) {
+        return axios.post(BASE_URL + `login`, {username, password})
+    },
+    currentUser() {
+        return axios.get(BASE_URL + `authenticated`)
+    }
+}
+
 export const usersAPI = {
     getUsers(keyword, currentPage, pageSize) {
         return (
             axios.get(BASE_URL + `users?keyword=${keyword}&pageNo=${currentPage}&pageSize=${pageSize}`).then(res => res.data)
         )
-    }
-}
+    },
 
-export const getUserProfile = {
     getProfileById(userId) {
         return (
             axios.get(BASE_URL + `user/` + userId).then(res => res.data.data)
@@ -34,11 +41,11 @@ export const getUserProfile = {
     }
 }
 
-export const authAPI = {
-    auth(username, password) {
-        return axios.post(BASE_URL + `login`, {username, password})
-    },
-    currentUser() {
-        return axios.get(BASE_URL + `authenticated`)
+export const postsAPI = {
+    getPosts(keyword, currentPage, pageSize){
+        return(
+            axios.get(BASE_URL + `posts?keyword=${keyword}&pageNo=${currentPage}&pageSize=${pageSize}`).then(res => res.data.data)
+        )
     }
 }
+

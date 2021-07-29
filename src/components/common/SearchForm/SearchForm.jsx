@@ -11,5 +11,5 @@ const SearchForm = (props) => {
     </div>
 }
 
-export const SearchReduxForm = reduxForm({form: 'getUsers'})(SearchForm)
-
+export const UsersSearchReduxForm = reduxForm({form: 'getUsers'})(SearchForm);
+export const PostsSearchReduxForm = reduxForm({form: 'getPosts'})(SearchForm);

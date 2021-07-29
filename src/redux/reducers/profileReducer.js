@@ -1,4 +1,4 @@
-import {getUserProfile} from "../components/api/api";
+import {usersAPI} from "../../components/api/api";
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
@@ -23,12 +23,12 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 //thunk
 export const getProfile = (userId) => async (dispatch) => {
-    let data = await getUserProfile.getProfileById(userId)
+    let data = await usersAPI.getProfileById(userId)
     dispatch(setUserProfile(data));
 }
 
 export const changeStatus = (userId, value) => async (dispatch) => {
-    let data = await getUserProfile.changeStatus(userId, value);
+    let data = await usersAPI.changeStatus(userId, value);
     dispatch(setUserProfile(data))
 }
 

@@ -1,22 +1,22 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import homePageReducer from "./homePageReducer";
-import usersPageReducer from "./usersPageReducer";
-import postsPageReducer from "./postsPageReducer";
-import profileReducer from "./profileReducer";
-import authReducer from "./authReducer";
+import usersReducer from "./reducers/usersReducer";
+import postsReducer from "./reducers/postsReducer";
+import profileReducer from "./reducers/profileReducer";
+import authReducer from "./reducers/authReducer";
 import thunk from "redux-thunk"; //thunkMiddleWare
 import {reducer as formReducer} from 'redux-form'
-import appReducer from "./appReducer";
+import appReducer from "./reducers/appReducer";
 
 
 let reducers = combineReducers({
     homePage: homePageReducer,
-    usersPage: usersPageReducer,
-    postsPage: postsPageReducer,
+    usersPage: usersReducer,
+    postsPage: postsReducer,
     profilePage: profileReducer,
     auth: authReducer,
     form: formReducer,
-    app: appReducer
+    app: appReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

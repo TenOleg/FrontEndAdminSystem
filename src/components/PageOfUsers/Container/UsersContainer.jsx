@@ -1,8 +1,7 @@
 import {connect} from "react-redux";
-import {getUsers, setCurrentPage} from "../../redux/usersPageReducer";
+import {getUsers, setCurrentPage} from "../../../redux/reducers/usersReducer";
 import React from "react";
-import Users from "./Users";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
     getAllUsers,
@@ -10,7 +9,8 @@ import {
     getIsFetching, getKeyword,
     getPageSize,
     getTotalUsersCount
-} from "../../redux/users-selectors";
+} from "../../../redux/selectors/users-selectors";
+import Users from "../Users/Users";
 
 class UsersContainer extends React.Component {
 
@@ -22,7 +22,7 @@ class UsersContainer extends React.Component {
         this.props.getUsers(this.props.keyword, pageNumber, this.props.pageSize);
     }
 
-    onSearchClick = (keyword) => {
+    searchUser = (keyword) => {
             this.props.getUsers(keyword || '', this.props.currentPage, this.props.pageSize)
     }
 
@@ -38,7 +38,7 @@ class UsersContainer extends React.Component {
             totalUsersCount={this.props.totalUsersCount}
             currentPage={this.props.currentPage}
             pageSize={this.props.pageSize}
-            onSearchClick={this.onSearchClick}
+            searchUser={this.searchUser}
         />
     }
 }

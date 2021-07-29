@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import Profile from "./Profile";
+import Profile from "../UserProfile/Profile";
 import {connect} from "react-redux";
-import {changeStatus, getProfile} from "../../../redux/profileReducer";
+import {changeStatus, getProfile} from "../../../redux/reducers/profileReducer";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
-class ProfileContainer extends Component {
+class UserProfileContainer extends Component {
 
     state = {
         statusList: [
@@ -15,15 +15,6 @@ class ProfileContainer extends Component {
             {id: 3, status: 'DELETED'}
         ]
     }
-
-//     let userId = this.props.match.params.userId;
-//     if(!userId){
-//     userId = this.props.authorizedUserId
-//     if(!userId){
-//     this.props.history.push('/login')
-// }
-// }
-// this.props.getProfile(userId);
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
@@ -63,4 +54,4 @@ export default compose(
         getProfile,
         changeStatus
     })
-)(ProfileContainer);
+)(UserProfileContainer);

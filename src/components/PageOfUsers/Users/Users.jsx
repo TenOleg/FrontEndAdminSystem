@@ -2,17 +2,17 @@ import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
 import Paginator from "../../common/Paginator/Paginator";
-import {SearchReduxForm} from "../../common/SearchForm/SearchForm";
+import {UsersSearchReduxForm} from "../../common/SearchForm/SearchForm";
 
-const UserInfo = (props) => {
+const Users = (props) => {
 
     const onSubmit = (formData) => {
-        props.onSearchClick(formData.keyword)
+        props.searchUser(formData.keyword)
     }
 
     return <div>
         {props.isFetching ? <Preloader/> : null}
-        <SearchReduxForm onSubmit={onSubmit}/>
+        <UsersSearchReduxForm onSubmit={onSubmit}/>
         {
             props.users.map(u => <div key={u.id}>
                     <span>
@@ -30,4 +30,4 @@ const UserInfo = (props) => {
     </div>
 }
 
-export default UserInfo;
+export default Users;

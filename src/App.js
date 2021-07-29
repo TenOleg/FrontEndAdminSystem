@@ -2,18 +2,18 @@ import './App.css';
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import {Route, withRouter} from "react-router-dom";
-import PostsContainer from "./components/Posts/PostsContainer";
+import PostsContainer from "./components/PageOfPosts/Container/PostsContainer";
 import HomeContainer from "./components/Main/HomeContainer";
-import ProfileContainer from "./components/Users/Profile/ProfileContainer";
+import ProfileContainer from "./components/PageOfUsers/Container/UserProfileContainer";
 import LoginPage from "./components/Login/LoginPage";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {initializeApp} from "./redux/appReducer";
+import {initializeApp} from "./redux/reducers/appReducer";
 import Preloader from "./components/common/Preloader/Preloader"
 import React from "react";
 import HeaderContainer from "./components/Header/HeaderContainer";
 
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const UsersContainer = React.lazy(() => import('./components/PageOfUsers/Container/UsersContainer'));
 
 class App extends React.Component {
 

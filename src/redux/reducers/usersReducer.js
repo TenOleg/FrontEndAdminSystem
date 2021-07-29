@@ -1,10 +1,5 @@
-import {usersAPI} from "../components/api/api";
-
-const SET_USERS = 'SET_USERS';
-const CURRENT_PAGE = 'CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const SET_KEYWORD = 'SET_KEYWORD';
+import {usersAPI} from "../../components/api/api";
+import {CURRENT_PAGE, SET_KEYWORD, SET_TOTAL_COUNT, SET_USERS, TOGGLE_IS_FETCHING} from "../common/constants/constants";
 
 let initialState = {
     users: [],
@@ -15,7 +10,7 @@ let initialState = {
     isFetching: false
 }
 
-const usersPageReducer = (state = initialState, action) => {
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_KEYWORD:
             return {...state, keyword: action.keyword}
@@ -25,7 +20,7 @@ const usersPageReducer = (state = initialState, action) => {
             return {
                 ...state, currentPage: action.currentPage
             }
-        case SET_TOTAL_USERS_COUNT:
+        case SET_TOTAL_COUNT:
             return {
                 ...state, totalUsersCount: action.totalUsersCount
             }
@@ -40,7 +35,7 @@ const usersPageReducer = (state = initialState, action) => {
 
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: CURRENT_PAGE, currentPage})
-export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
+export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_COUNT, totalUsersCount})
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 export const setKeyword = (keyword) => ({type:SET_KEYWORD, keyword})
 
@@ -48,12 +43,12 @@ export const setKeyword = (keyword) => ({type:SET_KEYWORD, keyword})
 export const getUsers = (keyword, currentPage, pageSize) =>
     async (dispatch) => {
         dispatch(toggleIsFetching(true));
+        dispatch(setKeyword(keyword));
         dispatch(setCurrentPage(currentPage));
         let data = await usersAPI.getUsers(keyword, currentPage, pageSize)
         dispatch(toggleIsFetching(false));
-        dispatch(setKeyword(keyword));
         dispatch(setUsers(data.data));
         dispatch(setUsersTotalCount(data.totalCount));
     }
 
-export default usersPageReducer;
+export default usersReducer;

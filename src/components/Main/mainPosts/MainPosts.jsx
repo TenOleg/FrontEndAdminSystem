@@ -1,9 +1,9 @@
 import React from "react";
 
-const Posts = (props) => {
+const MainPosts = (props) => {
     return(
         <div>{props.message}</div>
     )
 }
 
-export default Posts;
+export default MainPosts;

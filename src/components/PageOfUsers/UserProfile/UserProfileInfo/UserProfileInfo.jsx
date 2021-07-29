@@ -1,7 +1,7 @@
 import React from "react";
 import Preloader from "../../../common/Preloader/Preloader";
 
-const ProfileInfo = (props) => {
+const UserProfileInfo = (props) => {
 
     if (!props.profile) {
         return <Preloader/>
@@ -35,4 +35,4 @@ const ProfileInfo = (props) => {
     )
 }
 
-export default ProfileInfo;
+export default UserProfileInfo;
