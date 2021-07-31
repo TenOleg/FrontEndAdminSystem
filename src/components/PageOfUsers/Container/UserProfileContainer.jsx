@@ -1,20 +1,12 @@
 import React, {Component} from 'react';
 import Profile from "../UserProfile/Profile";
 import {connect} from "react-redux";
-import {changeStatus, getProfile} from "../../../redux/reducers/profileReducer";
+import {changeStatus, getProfile, saveComment} from "../../../redux/reducers/profileReducer";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 class UserProfileContainer extends Component {
-
-    state = {
-        statusList: [
-            {id: 1, status: 'ACTIVE'},
-            {id: 2, status: 'BANNED'},
-            {id: 3, status: 'DELETED'}
-        ]
-    }
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
@@ -24,7 +16,6 @@ class UserProfileContainer extends Component {
                 this.props.history.push('/login')
             }
         }
-
     }
 
     onStatusChange = (userId, value) => {
@@ -34,8 +25,8 @@ class UserProfileContainer extends Component {
     render() {
         return (
             <div>
-                <Profile {...this.props} onStatusChange={this.onStatusChange} profile={this.props.profile}
-                         userId={this.props.match.params.userId} statusList={this.state.statusList}/>
+                <Profile {...this.props} saveComment={this.props.saveComment} onStatusChange={this.onStatusChange} profile={this.props.profile}
+                         userId={this.props.match.params.userId} statusList={this.props.status}/>
             </div>
         );
     }
@@ -44,7 +35,8 @@ class UserProfileContainer extends Component {
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    status: state.profilePage.status
 })
 
 export default compose(
@@ -52,6 +44,7 @@ export default compose(
     withRouter,
     connect(mapStateToProps, {
         getProfile,
-        changeStatus
+        changeStatus,
+        saveComment
     })
 )(UserProfileContainer);

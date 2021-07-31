@@ -2,6 +2,7 @@ import React from "react";
 import Paginator from "../../common/Paginator/Paginator";
 import Preloader from "../../common/Preloader/Preloader";
 import {PostsSearchReduxForm} from "../../common/SearchForm/SearchForm";
+import {NavLink} from "react-router-dom";
 
 const Posts = (props) => {
 
@@ -16,7 +17,7 @@ const Posts = (props) => {
             {
                 props.posts.map(p => <div key={p.id}>
                     <span>{p.id}</span>
-                    <span>{p.title}</span>
+                    <NavLink to={'/postInfo/' + p.id}><span>{p.title}</span></NavLink>
                     <span>{p.description}</span>
                     <span>{p.status}</span>
                     <span>{p.created}</span>

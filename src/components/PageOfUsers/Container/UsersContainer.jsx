@@ -23,7 +23,7 @@ class UsersContainer extends React.Component {
     }
 
     searchUser = (keyword) => {
-            this.props.getUsers(keyword || '', this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(keyword || '', this.props.currentPage, this.props.pageSize)
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {

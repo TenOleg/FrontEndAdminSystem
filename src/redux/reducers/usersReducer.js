@@ -45,10 +45,12 @@ export const getUsers = (keyword, currentPage, pageSize) =>
         dispatch(toggleIsFetching(true));
         dispatch(setKeyword(keyword));
         dispatch(setCurrentPage(currentPage));
-        let data = await usersAPI.getUsers(keyword, currentPage, pageSize)
+        let data = await usersAPI.getAllUsers(keyword, currentPage, pageSize)
         dispatch(toggleIsFetching(false));
         dispatch(setUsers(data.data));
         dispatch(setUsersTotalCount(data.totalCount));
     }
+
+
 
 export default usersReducer;

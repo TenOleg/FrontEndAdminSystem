@@ -25,8 +25,8 @@ const UserProfileInfo = (props) => {
                     }
                 }>
                     {
-                        props.statusList.map((stat) => <option key={stat.id} selected={props.profile.status === stat.status ? true : false} // через defaultvalue работает хреново нужно решить это проблему
-                                                               disabled={props.profile.status === stat.status ? true : false}>{stat.status}</option>)
+                        props.statusList.map((stat) => <option key={stat.id} selected={props.profile.status === stat.name ? true : false} // через defaultvalue работает хреново нужно решить это проблему
+                                                               disabled={props.profile.status === stat.name ? true : false}>{stat.name}</option>)
                     }
                 </select>
             </div>

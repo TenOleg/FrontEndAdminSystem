@@ -1,6 +1,5 @@
 import {authAPI} from "../../components/api/api";
-
-const SET_USER_DATA = 'SET_USER_DATA';
+import {SET_USER_DATA} from "../common/constants/constants";
 
 let initialState = {
     userId: null,
@@ -32,14 +31,13 @@ export const getUserData = () => async (dispatch) => {
         let {id, username} = res.data.data;
         dispatch(setUserData(id, username, true))
     }
-
 }
 
 export const login = (username, password) => async (dispatch) => {
     let res = await authAPI.auth(username, password)
-    if (res.data.resultCode === 0) {
+    if (res.resultCode === 0) {
         dispatch(getUserData())
-        localStorage.setItem('user', JSON.stringify(res.data.currentUser))
+        localStorage.setItem('user', JSON.stringify(res.data))
     }
 }
 

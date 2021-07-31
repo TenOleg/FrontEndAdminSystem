@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {getPosts, setCurrentPage} from "../../../redux/reducers/postsReducer";
 import {
     getAllPosts,
@@ -32,13 +31,13 @@ class PostsContainer extends React.Component {
 
     render() {
         return <Posts
-        posts={this.props.posts}
-        onPageChanged={this.onPageChanged}
-        isFetching={this.props.isFetching}
-        totalPostsCount={this.props.totalPostsCount}
-        currentPage={this.props.currentPage}
-        pageSize={this.props.pageSize}
-        searchPost={this.searchPost}
+            posts={this.props.posts}
+            onPageChanged={this.onPageChanged}
+            isFetching={this.props.isFetching}
+            totalPostsCount={this.props.totalPostsCount}
+            currentPage={this.props.currentPage}
+            pageSize={this.props.pageSize}
+            searchPost={this.searchPost}
         />
     }
 }
@@ -55,9 +54,8 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    // withAuthRedirect,
     connect(mapStateToProps, {
         setCurrentPage,
         getPosts
-    })
-    (PostsContainer));
+    }))
+(PostsContainer);

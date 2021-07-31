@@ -37,9 +37,9 @@ export const setKeyword = (keyword) => ({type: SET_KEYWORD, keyword})
 export const getPosts = (keyword, currentPage, pageSize) =>
     async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        dispatch(setCurrentPage(currentPage));
-        let data = await postsAPI.getPosts(keyword, currentPage, pageSize);
         dispatch(setKeyword(keyword));
+        dispatch(setCurrentPage(currentPage));
+        let data = await postsAPI.getAllPosts(keyword, currentPage, pageSize);
         dispatch(toggleIsFetching(false));
         dispatch(setPosts(data.content));
         dispatch(setPostsTotalCount(data.totalElements))

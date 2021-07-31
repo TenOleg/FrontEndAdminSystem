@@ -1,12 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+import {TextAreaReduxForm} from "../../../common/TextAreaForm/TextAreaForm";
 
 const ProfileStatusCommentWithHooks = (props) => {
     let [editMode, setEditMode] = useState(false)
-    let [userStatus, setUserStatus] = useState(props.status)
-
-    useEffect( () => {
-        setUserStatus(props.status)
-    }, [props.status])
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -16,16 +12,17 @@ const ProfileStatusCommentWithHooks = (props) => {
         setEditMode(false)
     }
 
-    const onStatusChange = (e) => {
-        setUserStatus(e.currentTarget.value)
+    const onSubmit = (formData) => {
+        props.saveComment(props.userId, props.status, formData.comment)
+        deActivateEditMode()
     }
 
     return (
         <>
-            {!editMode? <div>
-                <span onDoubleClick={activateEditMode}>{userStatus}</span>
+            {!editMode ? <div>
+                <span onDoubleClick={activateEditMode}>{props.p}</span>
             </div> : <div>
-                <input onChange={onStatusChange} autoFocus={true} onBlur={deActivateEditMode} value={userStatus}></input>
+                <TextAreaReduxForm onSubmit={onSubmit}/>
             </div>}
         </>
     )

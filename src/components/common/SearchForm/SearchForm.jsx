@@ -1,11 +1,11 @@
-import {CreatField} from "../FormsControls/FormControls";
+import {creatField} from "../FormsControls/FormControls";
 import React from "react";
 import {reduxForm} from "redux-form";
 
 const SearchForm = (props) => {
     return <div>
         <form onSubmit={props.handleSubmit}>
-            {CreatField('Search...', 'keyword', 'input')}
+            {creatField('Search...', 'keyword', 'input')}
             <button>search</button>
         </form>
     </div>

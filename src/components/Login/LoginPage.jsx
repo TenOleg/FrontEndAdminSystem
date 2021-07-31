@@ -4,13 +4,13 @@ import {connect} from "react-redux";
 import {login} from "../../redux/reducers/authReducer";
 import {Redirect} from "react-router-dom";
 import style from "../common/FormsControls/FormsControls.module.css"
-import {CreatField} from "../common/FormsControls/FormControls";
+import {creatField} from "../common/FormsControls/FormControls";
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            {CreatField('Username', 'username', 'input')}
-            {CreatField('Password', 'password', 'input')}
+            {creatField('Username', 'username', 'input')}
+            {creatField('Password', 'password', 'input')}
             {props.error && <div className={style.formSummaryError}>
                 {props.error}
             </div>}
