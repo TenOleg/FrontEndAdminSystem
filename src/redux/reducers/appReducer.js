@@ -3,15 +3,15 @@ import {getUserData} from "./authReducer";
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 let initialState = {
-    initialized: false
+    initialized: true
 }
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
-                ...state,
-                initialized: true
+                state,
+                initialized: false
             }
         default:
             return state;

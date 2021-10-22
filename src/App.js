@@ -1,8 +1,6 @@
-import './App.css';
-import Footer from "./components/Footer/Footer";
+import styles from './App.module.css';
 import Navbar from "./components/Navbar/Navbar";
 import {Route, withRouter} from "react-router-dom";
-import HomeContainer from "./components/Main/HomeContainer";
 import ProfileContainer from "./components/PageOfUsers/Container/UserProfileContainer";
 import LoginPage from "./components/Login/LoginPage";
 import {connect} from "react-redux";
@@ -12,6 +10,7 @@ import Preloader from "./components/common/Preloader/Preloader"
 import React from "react";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import PostInfoContainer from "./components/PageOfPosts/Container/PostInfoContainer";
+import AnalyticsContainer from "./components/PageOfAnalytics/AnalyticsContainer";
 
 const UsersContainer = React.lazy(() => import('./components/PageOfUsers/Container/UsersContainer'));
 const PostsContainer = React.lazy(() => import("./components/PageOfPosts/Container/PostsContainer"));
@@ -23,16 +22,18 @@ class App extends React.Component {
     }
 
     render() {
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
+        // if (!this.props.initialized) {
+        //     return <Preloader/>
+        // }
         return (
-            <div className="app-wrapper">
-                <HeaderContainer/>
-                <Navbar/>
-                <div>
+            <div className={styles.container}>
+                <div className={ this.props.isAuth ? styles.header: ''}>
+                    <HeaderContainer/>
+                </div>
+                <div className={styles.nav}><Navbar/></div>
+                <div className={styles.content}>
+                    <Route path={'/analytics'} render={() => <AnalyticsContainer/>}/>
                     <Route path={'/login'} render={() => <LoginPage/>}/>
-                    <Route path={'/home'} render={() => <HomeContainer/>}/>
                     <Route path={'/users'} render={() => {
                         return <React.Suspense fallback={<Preloader/>}>
                             <UsersContainer/>
@@ -46,7 +47,6 @@ class App extends React.Component {
                     <Route path={'/profile/:userId'} render={() => <ProfileContainer/>}/>
                     <Route path={'/postInfo/:postId'} render={() => <PostInfoContainer/>}/>
                 </div>
-                <Footer/>
             </div>
         );
     }
@@ -55,6 +55,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
     initialized: state.app.initialized,
+    isAuth: state.auth.isAuth
 })
 
 export default compose(

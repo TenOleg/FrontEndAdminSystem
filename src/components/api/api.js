@@ -21,8 +21,15 @@ export const authAPI = {
 }
 
 export const usersAPI = {
-    getAllUsers(keyword, currentPage, pageSize) {
-        return axios.get(BASE_URL + `users?keyword=${keyword}&pageNo=${currentPage}&pageSize=${pageSize}`).then(res => res.data)
+    getAllUsers(userStatus, keyword, currentPage, pageSize) {
+        return axios.get(BASE_URL + `users`, {
+            params: {
+                status: userStatus,
+                keyword: keyword,
+                pageNo: currentPage,
+                pageSize: pageSize
+            }
+        }).then(res => res.data)
     },
 
     getProfileById(userId) {
@@ -30,7 +37,7 @@ export const usersAPI = {
     },
 
     changeStatus(userId, value) {
-        return axios.patch(BASE_URL + `user/` + userId + "?status=" + value).then(res => res.data.data)
+        return axios.patch(BASE_URL + `user/` + userId + '?status=' + value).then(res => res.data.data)
     },
     postComment(userId, status, comment){
         return axios.post(BASE_URL + `user`, {userId, status, comment}).then(res => res.data)
@@ -38,8 +45,24 @@ export const usersAPI = {
 }
 
 export const postsAPI = {
-    getAllPosts(keyword, currentPage, pageSize){
-        return axios.get(BASE_URL + `posts?keyword=${keyword}&pageNo=${currentPage}&pageSize=${pageSize}`).then(res => res.data.data)
+    getAllPosts(postsStatus, keyword, currentPage, pageSize){
+        return axios.get(BASE_URL + `posts`,{
+            params: {
+                status: postsStatus,
+                keyword: keyword,
+                pageNo: currentPage,
+                pageSize: pageSize
+            }
+        }).then(res => res.data)
+    }
+}
+
+export const analyticsAPI = {
+    getUsersStatics(){
+        return axios.get(BASE_URL + 'analytics/users').then(res => res.data.data)
+    },
+    getPostsStatics(){
+        return axios.get(BASE_URL + 'analytics/posts').then(res => res.data.data)
     }
 }
 

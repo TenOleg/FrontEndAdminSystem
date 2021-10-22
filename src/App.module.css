@@ -1,0 +1,28 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template: 0.5fr 6fr 0.5fr / 1fr 6fr;
+    grid-template-areas:
+"header header"
+"nav content"
+"nav footer";
+}
+
+.header {
+    grid-area: header;
+    background-color: #2F4050;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.nav {
+    grid-area: nav;
+}
+
+.content {
+    grid-area: content;
+    margin-top: 30px;
+}
+

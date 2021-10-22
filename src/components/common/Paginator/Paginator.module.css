@@ -1,0 +1,26 @@
+.center {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagesNumber {
+    border-radius: 10px;
+    color: darkslategrey;
+    float: left;
+    padding: 9px 16px;
+    text-decoration: none;
+    border: 1px solid steelblue;
+    margin: 0 4px;
+}
+
+.pagination span:hover {
+    background-color: aliceblue;
+    color: lightgrey;
+}
+
+.selectedPage {
+    color: steelblue;
+}

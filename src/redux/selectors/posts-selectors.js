@@ -8,12 +8,20 @@ export const getAllPosts = createSelector(getPostsSelector, (posts) => {
     return posts
 })
 
+export const getMessage = (state) => {
+    return state.postsPage.message
+}
+
 export const getKeyword = (state) => {
     return state.postsPage.keyword
 }
 
 export const getPageSize = (state) => {
     return state.postsPage.pageSize
+}
+
+export const  getPostsStatus = (state) => {
+    return state.postsPage.postsStatus
 }
 
 export const getTotalPostsCount = (state) => {

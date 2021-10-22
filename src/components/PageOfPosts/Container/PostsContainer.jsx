@@ -5,24 +5,29 @@ import {getPosts, setCurrentPage} from "../../../redux/reducers/postsReducer";
 import {
     getAllPosts,
     getCurrentPage,
-    getIsFetching, getKeyword,
-    getPageSize,
+    getIsFetching, getKeyword, getMessage,
+    getPageSize, getPostsStatus,
     getTotalPostsCount
 } from "../../../redux/selectors/posts-selectors";
 import Posts from "../Posts/Posts";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 class PostsContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getPosts(this.props.keyword, this.props.currentPage, this.props.pageSize)
+        this.props.getPosts('ACTIVE', this.props.keyword, this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getPosts(this.props.keyword, pageNumber, this.props.pageSize)
+        this.props.getPosts(this.props.postsStatus, this.props.keyword, pageNumber, this.props.pageSize)
     }
 
     searchPost = (keyword) => {
-        this.props.getPosts(keyword || '', this.props.currentPage, this.props.pageSize)
+        this.props.getPosts(this.props.postsStatus, keyword || '', 1, this.props.pageSize)
+    }
+
+    onChangeTabsStatus = (postsStatus) => {
+        this.props.getPosts(postsStatus, this.props.keyword, 1, this.props.pageSize)
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -31,6 +36,7 @@ class PostsContainer extends React.Component {
 
     render() {
         return <Posts
+            onChangeTabsStatus={this.onChangeTabsStatus}
             posts={this.props.posts}
             onPageChanged={this.onPageChanged}
             isFetching={this.props.isFetching}
@@ -38,6 +44,7 @@ class PostsContainer extends React.Component {
             currentPage={this.props.currentPage}
             pageSize={this.props.pageSize}
             searchPost={this.searchPost}
+            message={this.props.message}
         />
     }
 }
@@ -50,10 +57,14 @@ let mapStateToProps = (state) => {
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         keyword: getKeyword(state),
+        message: getMessage(state),
+        postsStatus: getPostsStatus(state)
+
     }
 }
 
 export default compose(
+    withAuthRedirect,
     connect(mapStateToProps, {
         setCurrentPage,
         getPosts

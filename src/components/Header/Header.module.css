@@ -1,0 +1,44 @@
+.header {
+    width: 100%;
+    height: 50px;
+    color: white;
+}
+
+.headerWrapper {
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerTitle {
+    padding-left: 40px;
+}
+
+.headerIcons {
+    display: flex;
+    align-items: center;
+    color: lightgrey;
+}
+
+.iconContainer {
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.headerIconBadge {
+    width: 15px;
+    height: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    font-size: 10px;
+}

@@ -1,0 +1,63 @@
+.widgetLg {
+    flex: 2;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 15px -10px #000000;
+    box-shadow: 0px 0px 15px -10px #000000;
+}
+
+.widgetLgTitle {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+:global .widgetLgButton {
+    padding: 5px 7px;
+    border: none;
+    border-radius: 10px;
+}
+
+:global .ACTIVE {
+    background-color: #e5faf2;
+    color: #3bb077;
+}
+
+:global .BANNED {
+    background-color: #ebf1fe;
+    color: #2a7ade;
+}
+
+:global .DELETED {
+    background-color: #fff0f1;
+    color: #d95087;
+}
+
+.widgetLgTable {
+    width: 100%;
+    border-spacing: 20px;
+
+}
+
+.widgetLgTh {
+text-align: left;
+}
+
+.widgetLgUser {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.widgetLgAvatar {
+    margin-right: 10px;
+}
+
+.widgetLgUsername {
+}
+
+:global .widgetLgDate, :global .widgetLgPostTitle{
+    font-weight: 300;
+}
+
+.widgetLgStatus {
+
+}

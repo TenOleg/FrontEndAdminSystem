@@ -6,13 +6,13 @@ import {logout} from "../../redux/reducers/authReducer";
 class HeaderContainer extends React.Component {
 
     render() {
-        return <Header {...this.props}/>
+        return <Header {...this.props} isAuth={this.props.isAuth} />
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
     }
 }
 

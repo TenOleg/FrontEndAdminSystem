@@ -1,33 +1,25 @@
-import React from "react";
+import React from 'react';
 import Preloader from "../../common/Preloader/Preloader";
-import {NavLink} from "react-router-dom";
-import Paginator from "../../common/Paginator/Paginator";
 import {UsersSearchReduxForm} from "../../common/SearchForm/SearchForm";
+import Paginator from "../../common/Paginator/Paginator";
+import {TabsStatusForUsers} from "../../common/Tabs/TabsStatusForUsers";
 
 const Users = (props) => {
 
     const onSubmit = (formData) => {
-        props.searchUser(formData.keyword)
+        props.searchByKeyword(formData.keyword)
     }
 
-    return <div>
-        {props.isFetching ? <Preloader/> : null}
-        <UsersSearchReduxForm onSubmit={onSubmit}/>
-        {
-            props.users.map(u => <div key={u.id}>
-                    <span>
-                    <span>{u.id}</span>
-                    <NavLink to={'/profile/' + u.id}><span>{u.username}</span></NavLink>
-                    <span>{u.status}</span>
-                    <span>{u.created}</span>
-                    <span>{u.updated}</span>
-                    </span>
-            </div>)
-        }
-
-        <Paginator totalItemsCount={props.totalUsersCount} onPageChanged={props.onPageChanged}
-                   currentPage={props.currentPage} pageSize={props.pageSize}/>
-    </div>
+    return (
+        <div>
+            {props.isFetching ? <Preloader/> : null}
+            <UsersSearchReduxForm onSubmit={onSubmit}/>
+            <TabsStatusForUsers users={props.users} message={props.message}
+                                onChangeTabsStatus={props.onChangeTabsStatus}/>
+            <Paginator totalItemsCount={props.totalUsersCount} onPageChanged={props.onPageChanged}
+                       currentPage={props.currentPage} pageSize={props.pageSize}/>
+        </div>
+    );
 }
 
 export default Users;

@@ -12,6 +12,14 @@ export const getKeyword = (state) => {
     return state.usersPage.keyword
 }
 
+export const getUserStatus =(state) => {
+    return state.usersPage.userStatus
+}
+
+export const getMessage = (state) => {
+    return state.usersPage.message
+}
+
 export const getPageSize = (state) => {
     return state.usersPage.pageSize
 }
